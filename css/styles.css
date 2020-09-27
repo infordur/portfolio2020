@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css?family=VT323&display=swap");
+
+/* ######################################
+            COLORS
+###################################### */
+:root {
+    --green-color: #5bf870;
+    --green-bg: #05321e;
+    --off: #050505;
+}
+
+.theme-green {
+    --color: var(--green-color);
+    --bg: var(--green-bg);
+}
+
+/* ######################################
+            TERMINAL
+###################################### */
+.crt {
+    font-size: 2.5rem;
+    width: 100%;
+    z-index: 999;
+    height: 100vh;
+    background: var(--bg);
+    background-image: radial-gradient(ellipse, var(--bg) 0%, var(--off) 90%);
+    animation: on 2s linear;
+    transition: all 0.5s;
+}
+
+.crt,
+pre {
+    font-family: "VT323", monospace;
+}
+
+.crt::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 16, 16, 0.1) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: auto;
+    background-size: 100% 8px;
+    z-index: 2;
+    pointer-events: none;
+    animation: fadeIn 2s;
+}
+
+.crt::after {
+    content: " ";
+    opacity: 0;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.crt.turn-off::after {
+    animation: turnOff 0.4s ease-in-out;
+}
+
+.crt.off {
+    background: var(--off);
+}
+
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 8;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(255, 255, 255, 0.2) 10%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    opacity: 0.1;
+    position: absolute;
+    bottom: 100%;
+    pointer-events: none;
+    animation: scanline 10s linear infinite;
+}
+
+.terminal {
+    color: var(--color);
+    text-shadow: 0 0 5px #c8c8c8;
+    position: relative;
+    height: 100%;
+    padding: 0 2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+    text-transform: uppercase;
+    animation: textShadow 4s infinite;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#input {
+    caret-color: transparent;
+}
+
+/* ######################################
+            COMMANDS
+###################################### */
+.enter {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--green-color);
+    animation: cursor 1s infinite 2s step-end;
+}
+
+.title {
+    margin-top: 10%;
+}
+
+.title pre {
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    color: var(--green-color);
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+@media (min-width: 576px) {
+    .title pre {
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .title pre {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .title pre {
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .title {
+        margin-top: 5%;
+    }
+    .title pre {
+        font-size: 2rem;
+        line-height: 2rem;
+    }
+}
